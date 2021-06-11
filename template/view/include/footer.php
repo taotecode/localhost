@@ -19,7 +19,7 @@ Env::loadFile();
 ?>
 </div>
 
-<div class="layui-footer">
+<div class="layui-footer" style="display: none">
     <!-- 底部固定区域 -->
     2021-<?php echo date('Y')?> <?php echo Env::get('config.footer','yuanzhumc');?>
 </div>
