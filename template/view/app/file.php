@@ -1,15 +1,15 @@
 <?php
 /**
  * ${NAME}
- * @project aix
- * @copyright
- * @author chenjw
- * @version
+ * @project localhost
+ * @copyright 院主网络科技
+ * @author yuanzhumc
+ * @version 1.0
  * @date: 2021/6/10
  * @createTime 13:14
  * @filename file.php
  * @product_name PhpStorm
- * @link
+ * @link https://github.com/yuanzhumc/localhost
  * @example
  */
 ?>
