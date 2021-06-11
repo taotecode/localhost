@@ -1,13 +1,13 @@
 <?php
 /**
  * ${NAME}
- * @project aix
- * @copyright
- * @author chenjw
- * @version
+ * @project localhost
+ * @copyright 院主网络科技
+ * @author yuanzhumc
+ * @version 1.0
  * @date: 2021/6/10
  * @createTime 13:20
- * @filename aix.php
+ * @filename project.php
  * @product_name PhpStorm
  * @link
  * @example
@@ -23,7 +23,7 @@ $getMode=$getData['mode']?:'my';
 $data=file_get_contents('app/data/'.$getMode.'.json');
 $data=json_decode($data,true);
 
-$paramData=file_get_contents(Env::get('project.json'));
+$paramData=file_get_contents(Env::get('project.json','app/data/ProjectParam.json'));
 $paramData=json_decode($paramData,true);
 
 if (empty($paramData[$getMode])){

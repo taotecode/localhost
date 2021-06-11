@@ -17,15 +17,14 @@ error_reporting(E_ALL);
 
 include "lib/Env.php";
 include "app/common.php";
+ProjectParamFile();
 
-
-$app=$_GET['app']?:'app/index';
+$app = $_GET['app'] ?: 'app/index';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include viewShow($app);
     exit();
 }
-
 
 
 include "template/view/include/header.php";

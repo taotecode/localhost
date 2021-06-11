@@ -1,34 +1,34 @@
 <?php
 /**
  * ${NAME}
- * @project aix
- * @copyright
- * @author chenjw
- * @version
+ * @project localhost
+ * @copyright 院主网络科技
+ * @author yuanzhumc
+ * @version 1.0
  * @date: 2021/6/9
  * @createTime 17:12
  * @filename footer.php
  * @product_name PhpStorm
- * @link
+ * @link https://github.com/yuanzhumc/localhost
  * @example
  */
+
+use lib\Env;
+Env::loadFile();
+
 ?>
 </div>
 
 <div class="layui-footer">
     <!-- 底部固定区域 -->
-    2021-<?php echo date('Y')?> 陈江伟
+    2021-<?php echo date('Y')?> <?php echo Env::get('config.footer','yuanzhumc');?>
 </div>
 </div>
-<!--您的Layui代码start-->
 <script type="text/javascript">
     layui.use(['element'], function() {
         var element = layui.element;
         element.init();
-        /*layer弹出一个示例*/
-        //layer.msg('Hello World');
     });
-
 </script>
 </body>
 </html>

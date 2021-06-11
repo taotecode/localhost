@@ -1,24 +1,28 @@
 <?php
 /**
  * ${NAME}
- * @project aix
- * @copyright
- * @author chenjw
- * @version
+ * @project localhost
+ * @copyright 院主网络科技
+ * @author yuanzhumc
+ * @version 1.0
  * @date: 2021/6/9
  * @createTime 17:11
  * @filename header.php
  * @product_name PhpStorm
- * @link
+ * @link https://github.com/yuanzhumc/localhost
  * @example
  */
+
+use lib\Env;
+Env::loadFile();
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="/template/asster/layui-v2.6.8/css/layui.css" />
-    <title>陈江伟-本地环境信息</title>
+    <title><?php echo Env::get('config.headertitle','yuanzhumc-本地环境信息');?></title>
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     <script src="/template/asster/layui-v2.6.8/layui.js"></script>
     <style>

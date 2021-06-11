@@ -17,9 +17,6 @@
 use lib\Env;
 Env::loadFile();
 
-function projectShow($model){
-
-}
 
 /**
  * 获取nginx的*.conf文件内容
@@ -27,7 +24,7 @@ function projectShow($model){
  * @return false|string
  */
 function openNginxConf($name){
-    return file_get_contents(Env::get('localhost.nginxconf').$name)?:'null';
+    return file_get_contents(Env::get('localhost.nginxconf','/usr/local/nginx/conf/vhost/').$name)?:'null';
 }
 
 /**
@@ -36,7 +33,7 @@ function openNginxConf($name){
  * @return false|string
  */
 function openWebEnv($name){
-    return file_get_contents(Env::get('localhost.wwwroot').$name.'/'.Env::get('localhost.wwwrootenv'))?:'null';
+    return file_get_contents(Env::get('localhost.wwwroot','/data/wwwroot/').$name.'/'.Env::get('localhost.wwwrootenv','.env'))?:'null';
 }
 
 /**
@@ -48,6 +45,137 @@ function fileArray($data,$file){
     $file_pointer = fopen("app/data/".$file.".json", 'w+');
     fwrite($file_pointer,json_encode($data));
     fclose($file_pointer);
+}
+
+function ProjectParamFile(){
+    $Array = [
+        'common' => [
+            [
+                'title' => '项目名称',
+                'name' => 'title',
+                'type' => 'text',
+                "required" => true,
+                "href" => false,
+                "hrefStart" => "http://",
+                "hrefEnd" => "/"
+            ],
+            [
+                "title" => "本地域名",
+                "name" => "localhost",
+                "type" => "text",
+                "required" => true,
+                "href" => true,
+                "hrefStart" => "http://",
+                "hrefEnd" => "/"
+            ],
+            [
+                "title" => "账号",
+                "name" => "localUser",
+                "type" => "text",
+                "required" => true,
+                "href" => false,
+                "hrefStart" => "http://",
+                "hrefEnd" => "/"
+            ],
+            [
+                "title" => "密码",
+                "name" => "localPass",
+                "type" => "text",
+                "required" => true,
+                "href" => false,
+                "hrefStart" => "http://",
+                "hrefEnd" => "/"
+            ],
+            [
+                "title" => "线上域名",
+                "name" => "domain",
+                "type" => "text",
+                "required" => false,
+                "href" => true,
+                "hrefStart" => "http://",
+                "hrefEnd" => "/"
+            ],
+            [
+                "title" => "账号",
+                "name" => "domainUser",
+                "type" => "text",
+                "required" => false,
+                "href" => false,
+                "hrefStart" => "http://",
+                "hrefEnd" => "/"
+            ],
+            [
+                "title" => "密码",
+                "name" => "domainPass",
+                "type" => "text",
+                "required" => false,
+                "href" => false,
+                "hrefStart" => "http://",
+                "hrefEnd" => "/"
+            ],
+            [
+                "title" => "Git地址",
+                "name" => "git",
+                "type" => "text",
+                "required" => false,
+                "href" => true,
+                "hrefStart" => "http://",
+                "hrefEnd" => "/"
+            ],
+            [
+                "title" => "Git分支",
+                "name" => "gitBranch",
+                "type" => "text",
+                "required" => false,
+                "href" => false,
+                "hrefStart" => "http://",
+                "hrefEnd" => "/"
+            ],
+            [
+                "title" => "nginx文件",
+                "name" => "nginx",
+                "type" => "nginx",
+                "required" => false,
+                "href" => false,
+                "hrefStart" => "http://",
+                "hrefEnd" => "/"
+            ],
+            [
+                "title" => "网站目录",
+                "name" => "env",
+                "type" => "env",
+                "required" => false,
+                "href" => false,
+                "hrefStart" => "http://",
+                "hrefEnd" => "/"
+            ],
+            [
+                "title" => "开发备注",
+                "name" => "remarks",
+                "type" => "remarks",
+                "required" => false,
+                "href" => false,
+                "hrefStart" => "http://",
+                "hrefEnd" => "/"
+            ]
+        ]
+    ];
+    if (empty(Env::get('project.json'))){
+        if (!fileCheck('app/data/ProjectParam.json')){
+            fileArray($Array,'ProjectParam');
+        }
+    }else{
+        if (!fileCheck('app/data/ProjectParam.json')){
+            fileArray($Array,'ProjectParam');
+        }
+    }
+}
+
+function fileCheck($filename){
+    if (file_exists($filename)) {
+        return true;
+    }
+    return false;
 }
 
 /**
