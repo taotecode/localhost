@@ -13,7 +13,7 @@
  * @example
  */
 
-error_reporting(E_ALL);
+error_reporting(0);
 
 include "lib/Env.php";
 include "app/common.php";
