@@ -12,5 +12,25 @@
  * @link https://github.com/yuanzhumc/localhost
  * @example
  */
+
+function tree($directory)
+{
+    $mydir = dir($directory);
+    echo "<ul>";
+    while ($file = $mydir->read()) {
+        if ((is_dir("$directory/$file")) and ($file != ".") and ($file != "..")) {
+            echo '<li style="color="#ff00cc""><a href="index.php?app=app/file&file=/'.$file.'/">'.$file.'</a></font></li>';
+            tree("$directory/$file");
+        } else
+            echo "<li>$file</li>";
+    }
+    echo "</ul>";
+    $mydir->close();
+}
+
+//start the program
+
+echo "目录为粉红色";
+tree($_GET['file']?:"/");
 ?>
-<h1>此功能正在开发中</h1>
+
