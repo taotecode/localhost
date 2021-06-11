@@ -1,0 +1,112 @@
+{
+  "common": [
+    {
+      "title": "项目名称",
+      "name": "title",
+      "type": "text",
+      "required": true,
+      "href": false,
+      "hrefStart": "http://",
+      "hrefEnd": "/"
+    },
+    {
+      "title": "本地域名",
+      "name": "localhost",
+      "type": "text",
+      "required": true,
+      "href": true,
+      "hrefStart": "http://",
+      "hrefEnd": "/"
+    },
+    {
+      "title": "账号",
+      "name": "localUser",
+      "type": "text",
+      "required": true,
+      "href": false,
+      "hrefStart": "http://",
+      "hrefEnd": "/"
+    },
+    {
+      "title": "密码",
+      "name": "localPass",
+      "type": "text",
+      "required": true,
+      "href": false,
+      "hrefStart": "http://",
+      "hrefEnd": "/"
+    },
+    {
+      "title": "线上域名",
+      "name": "domain",
+      "type": "text",
+      "required": false,
+      "href": true,
+      "hrefStart": "http://",
+      "hrefEnd": "/"
+    },
+    {
+      "title": "账号",
+      "name": "domainUser",
+      "type": "text",
+      "required": false,
+      "href": false,
+      "hrefStart": "http://",
+      "hrefEnd": "/"
+    },
+    {
+      "title": "密码",
+      "name": "domainPass",
+      "type": "text",
+      "required": false,
+      "href": false,
+      "hrefStart": "http://",
+      "hrefEnd": "/"
+    },
+    {
+      "title": "Git地址",
+      "name": "git",
+      "type": "text",
+      "required": false,
+      "href": true,
+      "hrefStart": "http://",
+      "hrefEnd": "/"
+    },
+    {
+      "title": "Git分支",
+      "name": "gitBranch",
+      "type": "text",
+      "required": false,
+      "href": false,
+      "hrefStart": "http://",
+      "hrefEnd": "/"
+    },
+    {
+      "title": "nginx文件",
+      "name": "nginx",
+      "type": "nginx",
+      "required": false,
+      "href": false,
+      "hrefStart": "http://",
+      "hrefEnd": "/"
+    },
+    {
+      "title": "网站目录",
+      "name": "env",
+      "type": "env",
+      "required": false,
+      "href": false,
+      "hrefStart": "http://",
+      "hrefEnd": "/"
+    },
+    {
+      "title": "开发备注",
+      "name": "remarks",
+      "type": "remarks",
+      "required": false,
+      "href": false,
+      "hrefStart": "http://",
+      "hrefEnd": "/"
+    }
+  ]
+}
