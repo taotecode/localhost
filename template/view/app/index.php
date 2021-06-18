@@ -12,6 +12,77 @@
  * @link https://github.com/yuanzhumc/localhost
  * @example
  */
+
+/**
+ * 获取已安装扩展列表
+ */
+function printExtensions()
+{
+
+    foreach (get_loaded_extensions() as $i => $name) {
+        echo '<tr>';
+        echo "<td>", $name,"</td>";
+        echo "<td>",phpversion($name),"<td>";
+        echo '</tr>';
+    }
+}
+/**
+ * 获取MongoDB版本
+ */
+function getMongoVersion()
+{
+    if (extension_loaded('mongodb')) {
+        try {
+            $manager = new MongoDB\Driver\Manager('mongodb://root:123456@mongodb:27017');
+            $command = new MongoDB\Driver\Command(array('serverStatus'=>true));
+
+            $cursor = $manager->executeCommand('admin', $command);
+
+            return $cursor->toArray()[0]->version;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    } else {
+        return 'MongoDB 扩展未安装 ×';
+    }
+}
+/**
+ * 获取Redis版本
+ */
+function getRedisVersion()
+{
+    if (extension_loaded('redis')) {
+        try {
+            $redis = new Redis();
+            $redis->connect('redis', 6379);
+            $info = $redis->info();
+            return $info['redis_version'];
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    } else {
+        return 'Redis 扩展未安装 ×';
+    }
+}
+/**
+ * 获取MySQL版本
+ */
+function getMysqlVersion()
+{
+    if (extension_loaded('PDO_MYSQL')) {
+        try {
+            $dbh = new PDO('mysql:host=mysql;dbname=mysql', 'root', '123456');
+            $sth = $dbh->query('SELECT VERSION() as version');
+            $info = $sth->fetch();
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+        return $info['version'];
+    } else {
+        return 'PDO_MYSQL 扩展未安装 ×';
+    }
+
+}
 ?>
 
 <fieldset class="layui-elem-field">
@@ -124,9 +195,35 @@
                 <td>最大上传限制</td>
                 <td><?php echo get_cfg_var("upload_max_filesize") ?: "不允许";?></td>
             </tr>
+            <tr>
+                <td>MySQL服务器版本</td>
+                <td><?php echo getMysqlVersion(); ?></td>
+            </tr>
+            <tr>
+                <td>Redis服务器版本</td>
+                <td><?php echo getRedisVersion(); ?></td>
+            </tr>
+            <tr>
+                <td>MongoDB服务器版本</td>
+                <td><?php echo getMongoVersion(); ?></td>
+            </tr>
             </tbody>
         </table>
     </div>
 </fieldset>
-已安装扩展
-
+<fieldset class="layui-elem-field">
+    <legend>PHP-已安装扩展</legend>
+    <div class="layui-field-box">
+        <table class="layui-table">
+            <thead>
+            <tr>
+                <th>扩展名称</th>
+                <th>扩展版本</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php printExtensions(); ?>
+            </tbody>
+        </table>
+    </div>
+</fieldset>
