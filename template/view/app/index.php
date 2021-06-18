@@ -128,3 +128,5 @@
         </table>
     </div>
 </fieldset>
+已安装扩展
+
